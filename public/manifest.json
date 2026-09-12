@@ -1,0 +1,40 @@
+{
+  "id": "/",
+  "name": "سامانه دادومهر",
+  "short_name": "دادومهر",
+  "description": "سامانه دادومهر: دستیار تخصصی هوش مصنوعی حقوقی، تنظیم قراردادها و اوراق قضایی، ممیزی و تحلیل ریسک، بازسازی متن و آرشیو اسناد حقوقی.",
+  "theme_color": "#4f46e5",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "/",
+  "scope": "/",
+  "dir": "rtl",
+  "lang": "fa",
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
