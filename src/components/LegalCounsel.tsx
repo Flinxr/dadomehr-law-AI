@@ -20,6 +20,7 @@ import {
 import { LegalQAMessage, LegalDocument } from "../types";
 import { computeSHA256, getPersianNow } from "../utils/crypto";
 import { exportToPersianPdf } from "../utils/pdfExport";
+import { getApiUrl } from "../config";
 
 interface LegalCounselProps {
   onSaveDocument: (doc: Omit<LegalDocument, "id">) => void;
@@ -72,7 +73,7 @@ export const LegalCounsel: React.FC<LegalCounselProps> = ({
       .map((m) => ({ question: m.question, answer: m.response?.directAnswer }));
 
     try {
-      const res = await fetch("/api/legal/qa", {
+      const res = await fetch(getApiUrl("/api/legal/qa"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

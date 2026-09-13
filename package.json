@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "tsx server.ts",
     "build": "vite build && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs",
-    "start": "node -e \"process.exit(require('fs').existsSync('dist/server.cjs')?0:1)\" 2>/dev/null && node dist/server.cjs || tsx server.ts",
+    "start": "node -e \"const fs=require('fs'), cp=require('child_process'); if(fs.existsSync('dist/server.cjs')){cp.fork('dist/server.cjs');}else{cp.spawn(process.platform==='win32'?'npx.cmd':'npx',['tsx','server.ts'],{stdio:'inherit'});}\"",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit"

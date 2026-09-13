@@ -27,6 +27,7 @@ import { JudicialDraftResponse, JudicialPaperType, LegalDocument } from "../type
 import { computeSHA256, getPersianNow } from "../utils/crypto";
 import { exportToPersianPdf } from "../utils/pdfExport";
 import { JUDICIAL_PRESETS } from "../data/mockTemplates";
+import { getApiUrl } from "../config";
 
 interface JudicialDrafterProps {
   onSaveDocument: (doc: Omit<LegalDocument, "id">) => void;
@@ -155,7 +156,7 @@ export const JudicialDrafter: React.FC<JudicialDrafterProps> = ({ onSaveDocument
     setPage("output");
 
     try {
-      const res = await fetch("/api/judicial/draft", {
+      const res = await fetch(getApiUrl("/api/judicial/draft"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

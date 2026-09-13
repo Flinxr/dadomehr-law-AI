@@ -26,6 +26,7 @@ import {
 import { CaseSummaryResponse, LegalDocument } from "../types";
 import { computeSHA256, getPersianNow } from "../utils/crypto";
 import { exportToPersianPdf } from "../utils/pdfExport";
+import { getApiUrl } from "../config";
 
 interface CaseSummarizerProps {
   onSaveDocument: (doc: Omit<LegalDocument, "id">) => void;
@@ -66,7 +67,7 @@ export const CaseSummarizer: React.FC<CaseSummarizerProps> = ({
     setPage("output"); // Navigate to output page immediately to show loading state
 
     try {
-      const res = await fetch("/api/case/summarize", {
+      const res = await fetch(getApiUrl("/api/case/summarize"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

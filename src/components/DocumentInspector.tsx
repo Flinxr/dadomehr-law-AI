@@ -27,6 +27,7 @@ import {
 import { DocumentInspectionResponse, LegalDocument } from "../types";
 import { computeSHA256, getPersianNow } from "../utils/crypto";
 import { exportToPersianPdf } from "../utils/pdfExport";
+import { getApiUrl } from "../config";
 
 interface DocumentInspectorProps {
   onSaveDocument?: (doc: Omit<LegalDocument, "id">) => void;
@@ -117,7 +118,7 @@ export const DocumentInspector: React.FC<DocumentInspectorProps> = ({
     setPage("output");
 
     try {
-      const res = await fetch("/api/document/inspect", {
+      const res = await fetch(getApiUrl("/api/document/inspect"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

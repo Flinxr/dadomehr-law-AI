@@ -23,6 +23,7 @@ import {
 import { ContractDraftResponse, LegalDocument } from "../types";
 import { computeSHA256, getPersianNow } from "../utils/crypto";
 import { exportToPersianPdf } from "../utils/pdfExport";
+import { getApiUrl } from "../config";
 
 interface ContractDrafterProps {
   onSaveDocument: (doc: Omit<LegalDocument, "id">) => void;
@@ -72,7 +73,7 @@ export const ContractDrafter: React.FC<ContractDrafterProps> = ({
     setPage("output"); // Navigate to output page immediately to show progress
 
     try {
-      const res = await fetch("/api/contract/draft", {
+      const res = await fetch(getApiUrl("/api/contract/draft"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

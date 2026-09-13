@@ -23,6 +23,7 @@ import {
 import { PdfExtractionResponse, LegalDocument } from "../types";
 import { computeSHA256, getPersianNow } from "../utils/crypto";
 import { exportToPersianPdf } from "../utils/pdfExport";
+import { getApiUrl } from "../config";
 
 interface PdfToTextExtractorProps {
   onSendToRiskAnalysis?: (text: string) => void;
@@ -74,7 +75,7 @@ export const PdfToTextExtractor: React.FC<PdfToTextExtractorProps> = ({
     setPage("output"); // Jump to page 2 to display progress
 
     try {
-      const res = await fetch("/api/pdf/repair-persian-text", {
+      const res = await fetch(getApiUrl("/api/pdf/repair-persian-text"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ rawText: textToFix }),
@@ -115,7 +116,7 @@ export const PdfToTextExtractor: React.FC<PdfToTextExtractorProps> = ({
       setIsUploading(true);
       setPage("output");
       try {
-        const res = await fetch("/api/pdf/extract", {
+        const res = await fetch(getApiUrl("/api/pdf/extract"), {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
